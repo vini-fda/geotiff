@@ -2,7 +2,7 @@ use std::fmt;
 use std::fmt::{Debug, Formatter};
 use std::ops::Index;
 
-use tiff::complex_int::{CInt16, CInt32};
+use num_complex::Complex;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum RasterValue {
@@ -16,8 +16,8 @@ pub enum RasterValue {
     I16(i16),
     I32(i32),
     I64(i64),
-    CInt16(CInt16),
-    CInt32(CInt32),
+    CInt16(Complex<i16>),
+    CInt32(Complex<i32>),
 }
 
 impl RasterValue {
@@ -91,14 +91,14 @@ impl RasterValue {
         }
     }
 
-    pub fn as_cint16(&self) -> Option<CInt16> {
+    pub fn as_cint16(&self) -> Option<Complex<i16>> {
         match self {
             RasterValue::CInt16(value) => Some(*value),
             _ => None,
         }
     }
 
-    pub fn as_cint32(&self) -> Option<CInt32> {
+    pub fn as_cint32(&self) -> Option<Complex<i32>> {
         match self {
             RasterValue::CInt32(value) => Some(*value),
             _ => None,
@@ -117,8 +117,8 @@ pub enum RasterData {
     I16(Vec<i16>),
     I32(Vec<i32>),
     I64(Vec<i64>),
-    CInt16(Vec<CInt16>),
-    CInt32(Vec<CInt32>),
+    CInt16(Vec<Complex<i16>>),
+    CInt32(Vec<Complex<i32>>),
 }
 
 impl Debug for RasterData {

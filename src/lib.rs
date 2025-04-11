@@ -15,7 +15,7 @@ use crate::raster_data::*;
 mod coordinate_transform;
 mod decoder_ext;
 mod geo_key_directory;
-mod raster_data;
+pub mod raster_data;
 
 macro_rules! unwrap_type_cast {
     ($result: expr, $actual: ty, $expected: ty) => {
@@ -58,7 +58,7 @@ pub struct GeoTiff {
     pub raster_height: usize,
     pub num_samples: usize,
     coordinate_transform: Option<CoordinateTransform>,
-    raster_data: RasterData,
+    pub raster_data: RasterData,
 }
 
 impl GeoTiff {

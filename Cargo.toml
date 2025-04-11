@@ -16,6 +16,7 @@ geo-types = { version = "0.7" }
 num_enum = "0.7"
 num-traits = "0.2"
 tiff = { git = "https://github.com/vini-fda/image-tiff" }
+num-complex = "0.4.6"
 
 [dev-dependencies]
 proj = "0.27"
