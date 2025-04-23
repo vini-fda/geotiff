@@ -1,7 +1,7 @@
 use common::read_geotiff;
 use geo_types::{Coord, Rect};
 use geotiff::{GeoKeyDirectory, RasterDataType, RasterType};
-use tiff::complex_int::CInt16;
+use num_complex::Complex;
 
 mod common;
 
@@ -179,7 +179,7 @@ fn test_load_sentinel1_slc_burst() {
         geotiff
             .get_value_at_pixel(100, 100, 0)
             .map(|v| v.as_cint16().unwrap()),
-        Some(CInt16::new(74, -132))
+        Some(Complex::<i16>::new(74, -132))
     );
 
     // Test another pixel value at a different location
@@ -187,7 +187,7 @@ fn test_load_sentinel1_slc_burst() {
         geotiff
             .get_value_at_pixel(20, 20, 0)
             .map(|v| v.as_cint16().unwrap()),
-        Some(CInt16::new(1, -2))
+        Some(Complex::<i16>::new(1, -2))
     );
 
     // Test pixel values at GCP points
@@ -196,7 +196,7 @@ fn test_load_sentinel1_slc_burst() {
         geotiff
             .get_value_at_pixel(0, 0, 0)
             .map(|v| v.as_cint16().unwrap()),
-        Some(CInt16::new(0, 0))
+        Some(Complex::<i16>::new(0, 0))
     );
 
     // Test data type is CInt16
