@@ -57,7 +57,7 @@ pub struct GeoTiff {
     pub raster_width: usize,
     pub raster_height: usize,
     pub num_samples: usize,
-    coordinate_transform: Option<CoordinateTransform>,
+    pub coordinate_transform: Option<CoordinateTransform>,
     pub raster_data: RasterData,
 }
 
