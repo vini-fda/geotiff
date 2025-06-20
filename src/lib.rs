@@ -12,7 +12,7 @@ use crate::coordinate_transform::*;
 use crate::decoder_ext::*;
 use crate::raster_data::*;
 
-mod coordinate_transform;
+pub mod coordinate_transform;
 mod decoder_ext;
 mod geo_key_directory;
 pub mod raster_data;
