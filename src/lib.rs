@@ -2,7 +2,7 @@
 use std::io::{Read, Seek};
 
 use geo_types::{Coord, Rect};
-use tiff::decoder::{Decoder, DecodingResult};
+use tiff::decoder::{Decoder, DecodingResult, Limits};
 use tiff::tags::Tag;
 use tiff::TiffResult;
 
@@ -65,6 +65,10 @@ impl GeoTiff {
     /// Reads a GeoTIFF from the given source.
     pub fn read<R: Read + Seek>(reader: R) -> TiffResult<Self> {
         let mut decoder = Decoder::new(reader)?;
+        let mut limits = Limits::default();
+        // TODO(vini) Temporary fix: 2GiB limit
+        limits.decoding_buffer_size = 2_147_483_648;
+        decoder = decoder.with_limits(limits);
 
         let geo_key_directory = decoder.geo_key_directory()?;
         let coordinate_transform = decoder.coordinate_transform()?;
